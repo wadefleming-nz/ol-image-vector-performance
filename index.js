@@ -2,14 +2,31 @@ import './style.css';
 import 'ol/ol.css'
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
-import { Tile as TileLayer, Vector as VectorLayer, } from 'ol/layer.js';
+import { Tile as TileLayer, Vector as VectorLayer, VectorImage } from 'ol/layer.js';
 import { OSM, Vector as VectorSource } from 'ol/source.js';
 import Feature from 'ol/Feature.js';
 import { LineString, Point } from 'ol/geom.js';
 import { fromLonLat } from 'ol/proj.js';
 import { Stroke, Style } from 'ol/style.js';
 
-var map = new Map("map");
+var map = new Map({
+    target: 'map',
+    layers: [
+      new TileLayer({
+        source: new OSM()
+      }),
+      new VectorImage({
+       source: new VectorSource({
+         features: [] //createLineFeatures(style, numSegments)
+       })
+      })
+    ],
+    view: new View({
+      center: fromLonLat([-92.65, 29.75]),
+      zoom: 7 
+    })
+  });
+
 var raster = new TileLayer({
   source: new OSM()
 });
