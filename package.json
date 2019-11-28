@@ -1,0 +1,8 @@
+{
+  "name": "js-auhm5r",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "ol": "^6.1.1"
+  }
+}
